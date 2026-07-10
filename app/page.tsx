@@ -27,14 +27,14 @@ const QUESTIONS_DB = [
 
 export default function Game() {
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(false);
-  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
 
   const currentQuestion = QUESTIONS_DB[currentLevel];
 
-  const playSound = (type) => {
+  const playSound = (type: 'select' | 'win' | 'lose') => {
     const sounds = {
       select: new Audio('/sounds/suspense.mp3'),
       win: new Audio('/sounds/win.mp3'),
@@ -45,7 +45,7 @@ export default function Game() {
     }
   };
 
-  const handleAnswer = (option) => {
+  const handleAnswer = (option: string) => {
     if (isChecking) return;
     setSelectedOption(option);
     setIsChecking(true);
@@ -82,13 +82,13 @@ export default function Game() {
     return "0 €";
   };
 
-  const useJoker = (type) => {
+  const useJoker = (type: 'fiftyFifty' | 'phone' | 'audience') => {
     if (!jokers[type]) return;
     setJokers({ ...jokers, [type]: false });
     alert(`Joker ${type} utilisé !`);
   };
 
-  const getButtonClass = (option) => {
+  const getButtonClass = (option: string) => {
     if (!isChecking && selectedOption === option) return "answer-btn selected";
     if (isChecking && correctAnswer === option) return "answer-btn correct";
     if (isChecking && selectedOption === option && correctAnswer !== option) return "answer-btn wrong";
