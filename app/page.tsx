@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
-import { QUESTIONS_DB } from './questions';
+// NOUVEAU : On importe tes 3 niveaux de difficulté
+import { QUESTIONS_EASY, QUESTIONS_MEDIUM, QUESTIONS_HARD } from './questions';
 
 const MONEY_TREE = [
   "200 €", "300 €", "500 €", "1 000 €",
@@ -20,7 +21,6 @@ export default function Game() {
   const [isChecking, setIsChecking] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
   
-  // NOUVEAU : État pour cacher les mauvaises réponses du 50:50
   const [hiddenOptions, setHiddenOptions] = useState<string[]>([]);
   
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
@@ -48,9 +48,19 @@ export default function Game() {
   };
 
   const startNewGame = () => {
-    if (!QUESTIONS_DB || QUESTIONS_DB.length === 0) return;
-    const shuffled = [...QUESTIONS_DB].sort(() => 0.5 - Math.random());
-    setGameQuestions(shuffled.slice(0, 15));
+    // 1. On mélange chaque catégorie indépendamment
+    const shuffledEasy = [...QUESTIONS_EASY].sort(() => 0.5 - Math.random());
+    const shuffledMedium = [...QUESTIONS_MEDIUM].sort(() => 0.5 - Math.random());
+    const shuffledHard = [...QUESTIONS_HARD].sort(() => 0.5 - Math.random());
+
+    // 2. On prend les 5 premières de chaque catégorie et on les assemble dans l'ordre
+    const finalQuestions = [
+      ...shuffledEasy.slice(0, 5),
+      ...shuffledMedium.slice(0, 5),
+      ...shuffledHard.slice(0, 5)
+    ];
+
+    setGameQuestions(finalQuestions);
     setCurrentLevel(0);
     setJokers({ fiftyFifty: true, phone: true, audience: true });
     setHiddenOptions([]);
@@ -103,7 +113,7 @@ export default function Game() {
     setSelectedOption(null);
     setCorrectAnswer(null);
     setIsChecking(false);
-    setHiddenOptions([]); // Le 50:50 est réinitialisé pour la question suivante
+    setHiddenOptions([]); 
   };
 
   const getSafeHavenValue = () => {
@@ -112,16 +122,12 @@ export default function Game() {
     return "0 €";
   };
 
-  // --- LOGIQUE DES JOKERS ---
-
   const useFiftyFifty = () => {
     if (!jokers.fiftyFifty || isChecking) return;
     setJokers({ ...jokers, fiftyFifty: false });
     
     const currentQ = gameQuestions[currentLevel];
-    // On trouve les mauvaises réponses
     const wrongOptions = currentQ.options.filter(opt => opt !== currentQ.answer);
-    // On les mélange pour en cacher deux au hasard
     const shuffledWrong = wrongOptions.sort(() => 0.5 - Math.random());
     setHiddenOptions([shuffledWrong[0], shuffledWrong[1]]);
   };
@@ -142,8 +148,6 @@ export default function Game() {
     alert(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
   };
 
-  // --------------------------
-
   const getButtonClass = (option: string) => {
     if (!isChecking && selectedOption === option) return "answer-btn selected";
     if (isChecking && correctAnswer === option) return "answer-btn correct";
@@ -152,8 +156,12 @@ export default function Game() {
     return "answer-btn";
   };
 
-  if (gameQuestions.length === 0) {
-    return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>Chargement du jeu...</div>;
+  // Sécurité : Vérifie s'il y a bien au moins 15 questions chargées (5 de chaque)
+  if (gameQuestions.length < 15) {
+    return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "1.5rem" }}>
+      ⚠️ Attention : Il vous faut au moins 5 questions de chaque niveau (Facile, Moyen, Difficile) dans votre fichier questions.ts pour lancer le jeu !<br/>
+      (Actuellement, le jeu n'a pu charger que {gameQuestions.length} questions).
+    </div>;
   }
 
   const currentQuestion = gameQuestions[currentLevel];
@@ -184,7 +192,6 @@ export default function Game() {
 
         <div className="answers-grid">
           {currentQuestion.options.map((option, index) => {
-            // NOUVEAU : Si la réponse a été éliminée par le 50:50, on la cache
             if (hiddenOptions.includes(option)) {
               return <div key={index} style={{ visibility: 'hidden' }}></div>;
             }
