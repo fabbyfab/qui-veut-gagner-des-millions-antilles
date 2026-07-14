@@ -15,16 +15,12 @@ type Question = {
 };
 
 export default function Game() {
-  // NOUVEAU : État pour gérer la Mire d'accueil
   const [gameState, setGameState] = useState<'welcome' | 'playing'>('welcome');
-
   const [currentLevel, setCurrentLevel] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
-  
   const [hiddenOptions, setHiddenOptions] = useState<string[]>([]);
-  
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
   const [gameQuestions, setGameQuestions] = useState<Question[]>([]);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
@@ -33,7 +29,7 @@ export default function Game() {
   useEffect(() => {
     bgAudio.current = new Audio('/sounds/background.mp3');
     bgAudio.current.loop = true;
-    bgAudio.current.volume = 0.4; // Volume un peu plus fort pour le générique
+    bgAudio.current.volume = 0.4;
   }, []);
 
   const toggleMusic = () => {
@@ -64,7 +60,14 @@ export default function Game() {
     setJokers({ fiftyFifty: true, phone: true, audience: true });
     setHiddenOptions([]);
     resetTurn();
-    setGameState('playing'); // On quitte la mire d'accueil pour le plateau
+    setGameState('playing');
+    
+    // NOUVEAU : On s'assure que la musique est coupée au début d'une nouvelle partie
+    if (bgAudio.current) {
+      bgAudio.current.pause();
+      bgAudio.current.currentTime = 0;
+      setIsPlayingMusic(false);
+    }
   };
 
   const playSound = (type: 'select' | 'win' | 'lose' | 'joker') => {
@@ -97,14 +100,28 @@ export default function Game() {
       if (option === currentQ.answer) {
         playSound('win');
         setTimeout(() => {
-          setCurrentLevel(currentLevel + 1);
+          const nextLevel = currentLevel + 1;
+          setCurrentLevel(nextLevel);
           resetTurn();
+
+          // NOUVEAU : Lancement automatique de la musique après la 4ème (niveau 4) et 12ème (niveau 12) question
+          if (nextLevel === 4 || nextLevel === 12) {
+            if (bgAudio.current && !isPlayingMusic) {
+              bgAudio.current.play().catch(e => console.log("Erreur audio:", e));
+              setIsPlayingMusic(true);
+            }
+          }
         }, 3000);
       } else {
         playSound('lose');
         setTimeout(() => {
           alert("Fin de la partie ! Vous repartez avec " + getSafeHavenValue());
-          setGameState('welcome'); // NOUVEAU : Retour à la mire d'accueil après une défaite
+          setGameState('welcome');
+          // On coupe la musique en retournant à l'accueil
+          if (bgAudio.current) {
+            bgAudio.current.pause();
+            setIsPlayingMusic(false);
+          }
         }, 3000);
       }
     }, 3000);
@@ -172,7 +189,6 @@ export default function Game() {
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
-          {/* Bouton pour jouer la musique d'ambiance */}
           <button
             onClick={toggleMusic}
             style={{ padding: '10px 20px', fontSize: '1.2rem', borderRadius: '10px', background: 'transparent', border: '2px solid #e5b80b', color: '#e5b80b', cursor: 'pointer' }}
@@ -180,11 +196,10 @@ export default function Game() {
             {isPlayingMusic ? '⏸️ Couper le générique' : '🎵 Lancer le générique'}
           </button>
 
-          {/* Bouton pour démarrer la partie (coupe la musique automatiquement) */}
           <button
             onClick={() => {
               if (bgAudio.current) {
-                bgAudio.current.pause(); // Coupe la musique au début du jeu
+                bgAudio.current.pause();
                 bgAudio.current.currentTime = 0;
                 setIsPlayingMusic(false);
               }
@@ -200,7 +215,6 @@ export default function Game() {
   }
 
   // --- ÉCRAN 2 : LE PLATEAU DE JEU ---
-
   if (gameQuestions.length < 15) {
     return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "1.5rem" }}>
       ⚠️ Attention : Il vous faut au moins 5 questions de chaque niveau (Facile, Moyen, Difficile) dans votre fichier questions.ts pour lancer le jeu !<br/>
