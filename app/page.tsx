@@ -14,11 +14,10 @@ type Question = {
   answer: string;
 };
 
-// NOUVEAU : On définit les différents écrans possibles du jeu
-type GameState = 'welcome' | 'playing' | 'safeHaven';
-
 export default function Game() {
-  const [gameState, setGameState] = useState<GameState>('welcome');
+  // NOUVEAU : État pour gérer la Mire d'accueil
+  const [gameState, setGameState] = useState<'welcome' | 'playing'>('welcome');
+
   const [currentLevel, setCurrentLevel] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(false);
@@ -34,8 +33,7 @@ export default function Game() {
   useEffect(() => {
     bgAudio.current = new Audio('/sounds/background.mp3');
     bgAudio.current.loop = true;
-    bgAudio.current.volume = 0.2;
-    startNewGame();
+    bgAudio.current.volume = 0.4; // Volume un peu plus fort pour le générique
   }, []);
 
   const toggleMusic = () => {
@@ -66,33 +64,7 @@ export default function Game() {
     setJokers({ fiftyFifty: true, phone: true, audience: true });
     setHiddenOptions([]);
     resetTurn();
-    
-    // On affiche l'écran d'accueil et on lance la musique
-    setGameState('welcome');
-    if (bgAudio.current) {
-      bgAudio.current.currentTime = 0;
-      // Le navigateur peut bloquer l'audio au premier chargement, on gère l'erreur silencieusement
-      bgAudio.current.play().then(() => setIsPlayingMusic(true)).catch(() => setIsPlayingMusic(false));
-    }
-  };
-
-  // NOUVEAU : Fonction pour quitter un écran d'attente et couper la musique
-  const startGame = () => {
-    if (bgAudio.current) {
-      bgAudio.current.pause();
-      setIsPlayingMusic(false);
-    }
-    setGameState('playing');
-  };
-
-  // NOUVEAU : Fonction pour quitter l'écran de palier et passer à la question suivante
-  const continueFromSafeHaven = () => {
-    if (bgAudio.current) {
-      bgAudio.current.pause();
-      setIsPlayingMusic(false);
-    }
-    setCurrentLevel(currentLevel + 1);
-    setGameState('playing');
+    setGameState('playing'); // On quitte la mire d'accueil pour le plateau
   };
 
   const playSound = (type: 'select' | 'win' | 'lose' | 'joker') => {
@@ -125,24 +97,14 @@ export default function Game() {
       if (option === currentQ.answer) {
         playSound('win');
         setTimeout(() => {
-          // NOUVEAU : On vérifie si on vient de réussir la question 4 (index 3) ou 12 (index 11)
-          if (currentLevel === 3 || currentLevel === 11) {
-            setGameState('safeHaven');
-            if (bgAudio.current) {
-              bgAudio.current.currentTime = 0;
-              bgAudio.current.play().catch(e => console.log("Erreur audio", e));
-              setIsPlayingMusic(true);
-            }
-          } else {
-            setCurrentLevel(currentLevel + 1);
-          }
+          setCurrentLevel(currentLevel + 1);
           resetTurn();
         }, 3000);
       } else {
         playSound('lose');
         setTimeout(() => {
           alert("Fin de la partie ! Vous repartez avec " + getSafeHavenValue());
-          startNewGame();
+          setGameState('welcome'); // NOUVEAU : Retour à la mire d'accueil après une défaite
         }, 3000);
       }
     }, 3000);
@@ -164,7 +126,7 @@ export default function Game() {
   const useFiftyFifty = () => {
     if (!jokers.fiftyFifty || isChecking) return;
     setJokers({ ...jokers, fiftyFifty: false });
-    playSound('joker'); 
+    playSound('joker');
     
     const currentQ = gameQuestions[currentLevel];
     const wrongOptions = currentQ.options.filter(opt => opt !== currentQ.answer);
@@ -175,7 +137,7 @@ export default function Game() {
   const usePhone = () => {
     if (!jokers.phone || isChecking) return;
     setJokers({ ...jokers, phone: false });
-    playSound('joker'); 
+    playSound('joker');
     
     const currentQ = gameQuestions[currentLevel];
     alert(`📞 APPEL À UN AMI :\n\n"Salut ! Écoute, je ne suis pas sûr à 100%, mais je dirais bien que c'est la réponse : ${currentQ.answer}."`);
@@ -184,7 +146,7 @@ export default function Game() {
   const useAudience = () => {
     if (!jokers.audience || isChecking) return;
     setJokers({ ...jokers, audience: false });
-    playSound('joker'); 
+    playSound('joker');
     
     const currentQ = gameQuestions[currentLevel];
     alert(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
@@ -198,55 +160,61 @@ export default function Game() {
     return "answer-btn";
   };
 
+  // --- ÉCRAN 1 : LA MIRE D'ACCUEIL ---
+  if (gameState === 'welcome') {
+    return (
+      <div className="game-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', textAlign: 'center' }}>
+        <h1 style={{ color: '#e5b80b', fontSize: '3.5rem', textShadow: '2px 2px 5px #000', margin: '0 0 10px 0' }}>
+          QUI VEUT GAGNER DES MILLIONS
+        </h1>
+        <h2 style={{ color: 'white', fontSize: '2rem', marginBottom: '60px', letterSpacing: '3px' }}>
+          ÉDITION ANTILLES
+        </h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+          {/* Bouton pour jouer la musique d'ambiance */}
+          <button
+            onClick={toggleMusic}
+            style={{ padding: '10px 20px', fontSize: '1.2rem', borderRadius: '10px', background: 'transparent', border: '2px solid #e5b80b', color: '#e5b80b', cursor: 'pointer' }}
+          >
+            {isPlayingMusic ? '⏸️ Couper le générique' : '🎵 Lancer le générique'}
+          </button>
+
+          {/* Bouton pour démarrer la partie (coupe la musique automatiquement) */}
+          <button
+            onClick={() => {
+              if (bgAudio.current) {
+                bgAudio.current.pause(); // Coupe la musique au début du jeu
+                bgAudio.current.currentTime = 0;
+                setIsPlayingMusic(false);
+              }
+              startNewGame();
+            }}
+            style={{ padding: '15px 40px', fontSize: '1.5rem', borderRadius: '30px', background: '#e5b80b', border: '3px solid white', color: 'black', fontWeight: 'bold', cursor: 'pointer', marginTop: '20px', textTransform: 'uppercase' }}
+          >
+            ▶️ Entrer sur le plateau
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // --- ÉCRAN 2 : LE PLATEAU DE JEU ---
+
   if (gameQuestions.length < 15) {
     return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "1.5rem" }}>
-      ⚠️ Attention : Il vous faut au moins 5 questions de chaque niveau dans votre fichier questions.ts !
+      ⚠️ Attention : Il vous faut au moins 5 questions de chaque niveau (Facile, Moyen, Difficile) dans votre fichier questions.ts pour lancer le jeu !<br/>
+      (Actuellement, le jeu n'a pu charger que {gameQuestions.length} questions).
     </div>;
   }
 
-  // --- ÉCRAN 1 : L'ACCUEIL ---
-  if (gameState === 'welcome') {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", color: "white", textAlign: "center" }}>
-        <h1 style={{ fontSize: "3rem", color: "#e5b80b", marginBottom: "10px", textShadow: "2px 2px 4px #000" }}>QUI VEUT GAGNER DES MILLIONS ?</h1>
-        <h2 style={{ fontSize: "2rem", marginBottom: "50px" }}>Édition Antilles</h2>
-        
-        <button onClick={startGame} style={{ padding: "15px 50px", fontSize: "1.5rem", borderRadius: "30px", background: "#e5b80b", border: "2px solid white", color: "black", fontWeight: "bold", cursor: "pointer", marginBottom: "20px", boxShadow: "0px 0px 15px rgba(229, 184, 11, 0.5)" }}>
-          START
-        </button>
-
-        {/* Bouton de secours si le navigateur empêche la musique de se lancer toute seule */}
-        {!isPlayingMusic && (
-          <button onClick={toggleMusic} style={{ background: "transparent", color: "white", border: "1px solid white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer", opacity: 0.7 }}>
-            🔊 Activer la musique
-          </button>
-        )}
-      </div>
-    );
-  }
-
-  // --- ÉCRAN 2 : LE PALIER ATTEINT ---
-  if (gameState === 'safeHaven') {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", color: "white", textAlign: "center" }}>
-        <h1 style={{ fontSize: "3rem", color: "#e5b80b", marginBottom: "20px", textShadow: "2px 2px 4px #000" }}>🎉 PALIER ATTEINT ! 🎉</h1>
-        <p style={{ fontSize: "1.5rem", marginBottom: "50px" }}>Bravo ! Vous êtes assuré de repartir avec au moins <strong>{MONEY_TREE[currentLevel]}</strong> !</p>
-        
-        <button onClick={continueFromSafeHaven} style={{ padding: "15px 50px", fontSize: "1.5rem", borderRadius: "30px", background: "#e5b80b", border: "2px solid white", color: "black", fontWeight: "bold", cursor: "pointer", boxShadow: "0px 0px 15px rgba(229, 184, 11, 0.5)" }}>
-          START (Question suivante)
-        </button>
-      </div>
-    );
-  }
-
-  // --- ÉCRAN 3 : LE JEU EN LUI-MÊME ---
   const currentQuestion = gameQuestions[currentLevel];
 
   if (!currentQuestion) return (
-    <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh" }}>
-      <h1 style={{ fontSize: "4rem", color: "#e5b80b" }}>🏆 LE MILLION ! 🏆</h1>
-      <p>Félicitations, vous avez remporté le jeu !</p>
-      <button onClick={startNewGame} style={{ marginTop: "30px", padding: "15px 30px", cursor: "pointer", fontSize: "1.2rem", borderRadius: "10px", background: "#e5b80b", border: "2px solid white", color: "black", fontWeight: "bold" }}>Rejouer une partie</button>
+    <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>
+      🏆 Vous avez gagné le MILLION ! 🏆
+      <br/>
+      <button onClick={() => setGameState('welcome')} style={{ marginTop: "30px", padding: "15px 30px", cursor: "pointer", fontSize: "1.2rem", borderRadius: "10px", background: "#e5b80b", border: "2px solid white", color: "black", fontWeight: "bold" }}>Retour à l'accueil</button>
     </div>
   );
 
@@ -256,7 +224,6 @@ export default function Game() {
         <button className="joker-btn" disabled={!jokers.fiftyFifty} onClick={useFiftyFifty}>50:50</button>
         <button className="joker-btn" disabled={!jokers.phone} onClick={usePhone}>☎️</button>
         <button className="joker-btn" disabled={!jokers.audience} onClick={useAudience}>👥</button>
-        {/* On peut garder ou enlever ce bouton, mais il permet toujours de gérer le son manuel */}
         <button className="joker-btn" onClick={toggleMusic} title="Activer/Désactiver la musique">
           {isPlayingMusic ? '🔊' : '🔇'}
         </button>
