@@ -1,5 +1,6 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { QUESTIONS_DB } from './questions'; // On importe ton grand stock de questions !
 
 const MONEY_TREE = [
   "200 €", "300 €", "500 €", "1 000 €",
@@ -7,23 +8,12 @@ const MONEY_TREE = [
   "150 000 €", "300 000 €", "1 000 000 €"
 ];
 
-const QUESTIONS_DB = [
-  {
-    question: "Quel fruit épineux et odorant appelle-t-on 'Zaboka' en créole ?",
-    options: ["L'avocat", "Le corossol", "La goyave", "Le fruit à pain"],
-    answer: "L'avocat"
-  },
-  {
-    question: "Quelle île de la Guadeloupe est célèbre pour son tourment d'amour ?",
-    options: ["Marie-Galante", "La Désirade", "Terre-de-Haut", "Grande-Terre"],
-    answer: "Terre-de-Haut"
-  },
-  {
-    question: "En quelle année a eu lieu l'éruption de la Montagne Pelée en Martinique ?",
-    options: ["1898", "1902", "1914", "1928"],
-    answer: "1902"
-  }
-];
+// On crée un type TypeScript pour éviter les erreurs Vercel
+type Question = {
+  question: string;
+  options: string[];
+  answer: string;
+};
 
 export default function Game() {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -31,8 +21,32 @@ export default function Game() {
   const [isChecking, setIsChecking] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
+  
+  // Le jeu garde en mémoire les 15 questions tirées au sort pour cette partie
+  const [gameQuestions, setGameQuestions] = useState<Question[]>([]);
 
-  const currentQuestion = QUESTIONS_DB[currentLevel];
+  // Se lance une seule fois au chargement de la page
+  useEffect(() => {
+    startNewGame();
+  }, []);
+
+  const startNewGame = () => {
+    // On mélange le grand stock de questions au hasard
+    const shuffled = [...QUESTIONS_DB].sort(() => 0.5 - Math.random());
+    // On garde uniquement les 15 premières
+    setGameQuestions(shuffled.slice(0, 15));
+    
+    setCurrentLevel(0);
+    setJokers({ fiftyFifty: true, phone: true, audience: true });
+    resetTurn();
+  };
+
+  // Si les questions ne sont pas encore chargées, on affiche un écran d'attente
+  if (gameQuestions.length === 0) {
+    return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>Chargement du jeu...</div>;
+  }
+
+  const currentQuestion = gameQuestions[currentLevel];
 
   const playSound = (type: 'select' | 'win' | 'lose') => {
     const sounds = {
@@ -63,8 +77,7 @@ export default function Game() {
         playSound('lose');
         setTimeout(() => {
           alert("Fin de la partie ! Vous repartez avec " + getSafeHavenValue());
-          setCurrentLevel(0);
-          resetTurn();
+          startNewGame(); // Relance une nouvelle partie avec 15 nouvelles questions !
         }, 3000);
       }
     }, 3000);
@@ -96,7 +109,14 @@ export default function Game() {
     return "answer-btn";
   };
 
-  if (!currentQuestion) return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>🏆 Vous avez gagné le MILLION ! 🏆</div>;
+  // Si on a dépassé le niveau 14 (15ème question), on gagne !
+  if (!currentQuestion) return (
+    <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>
+      🏆 Vous avez gagné le MILLION ! 🏆
+      <br/>
+      <button onClick={startNewGame} style={{ marginTop: "20px", padding: "10px 20px", cursor: "pointer" }}>Rejouer</button>
+    </div>
+  );
 
   return (
     <div className="game-container">
