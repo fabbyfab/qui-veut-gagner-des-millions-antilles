@@ -67,12 +67,14 @@ export default function Game() {
     resetTurn();
   };
 
-  const playSound = (type: 'select' | 'win' | 'lose') => {
+  // AJOUT : on ajoute 'joker' dans les types de sons possibles
+  const playSound = (type: 'select' | 'win' | 'lose' | 'joker') => {
     try {
       const sounds = {
         select: new Audio('/sounds/suspense.mp3'),
         win: new Audio('/sounds/win.mp3'),
-        lose: new Audio('/sounds/lose.mp3')
+        lose: new Audio('/sounds/lose.mp3'),
+        joker: new Audio('/sounds/joker.mp3') // Ajout de l'audio du joker
       };
       if (sounds[type]) {
         sounds[type].volume = 0.8;
@@ -125,6 +127,7 @@ export default function Game() {
   const useFiftyFifty = () => {
     if (!jokers.fiftyFifty || isChecking) return;
     setJokers({ ...jokers, fiftyFifty: false });
+    playSound('joker'); // On joue le son !
     
     const currentQ = gameQuestions[currentLevel];
     const wrongOptions = currentQ.options.filter(opt => opt !== currentQ.answer);
@@ -135,6 +138,7 @@ export default function Game() {
   const usePhone = () => {
     if (!jokers.phone || isChecking) return;
     setJokers({ ...jokers, phone: false });
+    playSound('joker'); // On joue le son !
     
     const currentQ = gameQuestions[currentLevel];
     alert(`📞 APPEL À UN AMI :\n\n"Salut ! Écoute, je ne suis pas sûr à 100%, mais je dirais bien que c'est la réponse : ${currentQ.answer}."`);
@@ -143,6 +147,7 @@ export default function Game() {
   const useAudience = () => {
     if (!jokers.audience || isChecking) return;
     setJokers({ ...jokers, audience: false });
+    playSound('joker'); // On joue le son !
     
     const currentQ = gameQuestions[currentLevel];
     alert(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
