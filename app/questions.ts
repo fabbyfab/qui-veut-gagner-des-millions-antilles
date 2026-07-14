@@ -5,6 +5,11 @@ export const QUESTIONS_EASY = [
     options: ["L'avocat", "Le corossol", "La goyave", "Le fruit à pain"],
     answer: "L'avocat"
   },
+  { 
+  question: "À quel fruit exotique Francky Vincent a-t-il dédié sa chanson la plus vendue, véritable hymne des soirées festives ?",
+    options: ["Le fruit de la passion", "La mangue", "Le corossol", "La goyave"],
+    answer: "Le fruit de la passion"
+   },
   {
     question: "Quel célèbre groupe antillais a popularisé le zouk dans les années 80 ?",
     options: ["Kassav'", "Malavoi", "La Compagnie Créole", "Zouk Machine"],
@@ -14,6 +19,12 @@ export const QUESTIONS_EASY = [
     question: "Comment appelle-t-on traditionnellement les beignets de morue antillais ?",
     options: ["Les accras", "Les dombrés", "Les boudins", "Les chiquetailles"],
     answer: "Les accras"
+  },
+
+  {
+    question: "Aux Antilles, pendant la période de l'Avent et de Noël, comment s'appellent les rassemblements festifs où l'on mange du porc et chante des cantiques ?",
+    options: ["Les Chanté Nwel", "Les Vidés", "Les Touloulous", "Les Léwoz"],
+    answer: "Les Chanté Nwel"
   },
   {
     question: "Quel petit oiseau au battement d'ailes très rapide est l'un des symboles des Antilles ?",
@@ -169,6 +180,12 @@ export const QUESTIONS_MEDIUM = [
     options: ["Patrick Chamoiseau", "Raphaël Confiant", "Maryse Condé", "Edouard Glissant"],
     answer: "Patrick Chamoiseau"
   },
+
+  {
+    question: "Rappeuse et chanteuse martiniquaise, elle a explosé avec son EP 'Ozoror' et a reçu 3 nominations aux Victoires de la Musique en 2024. Qui est-elle ?",
+    options: ["Meryl", "Maureen", "Lycinaïs Jean", "Fanny J"],
+    answer: "Meryl"
+  },
   {
     question: "Quel arbre, souvent présent sur les plages, est très toxique et possède des pommes dangereuses ?",
     options: ["Le mancenillier", "Le cocotier", "Le flamboyant", "Le frangipanier"],
@@ -178,6 +195,11 @@ export const QUESTIONS_MEDIUM = [
     question: "Sur quelle île de Guadeloupe peut-on visiter la célèbre 'Pointe des Châteaux' ?",
     options: ["Grande-Terre", "Basse-Terre", "Marie-Galante", "La Désirade"],
     answer: "Grande-Terre"
+  },
+  {
+    question: "Avec ses 120 mètres de dénivelé, quelle est la plus haute cascade de la Martinique ?",
+    options: ["Le Saut du Gendarme", "Les Gorges de la Falaise", "La Cascade Couleuvre", "La Cascade Didier"],
+    answer: "La Cascade Couleuvre"
   },
   {
     question: "Quel piment très parfumé est incontournable dans la cuisine antillaise ?",
@@ -192,6 +214,12 @@ export const QUESTIONS_HARD = [
     question: "En 2007, l'équipe de football de la Guadeloupe a réalisé un exploit historique lors de la Gold Cup. Jusqu'à quel stade est-elle allée ?",
     options: ["Quarts de finale", "Demi-finales", "Finale", "Vainqueur"],
     answer: "Demi-finales"
+  },
+
+  {
+    question: "Dans quelle île des Antilles françaises la célèbre série franco-britannique 'Meurtres au paradis' (Death in Paradise) est-elle tournée ?",
+    options: ["La Guadeloupe", "La Martinique", "Saint-Barthélemy", "Saint-Martin"],
+    answer: "La Guadeloupe"
   },
   {
     question: "Quelle commune de Guadeloupe est mondialement célèbre pour son cimetière aux tombes en damier noir et blanc ?",
@@ -227,6 +255,12 @@ export const QUESTIONS_HARD = [
     question: "Quel architecte français a conçu plus d'une centaine de bâtiments officiels en Guadeloupe après le passage du terrible ouragan de 1928 ?",
     options: ["Le Corbusier", "Gustave Eiffel", "Ali Tur", "Victor Louis"],
     answer: "Ali Tur"
+  },
+
+  {
+    question: "En 2022, le rappeur martiniquais Kalash a sorti un album portant le nom d'un célèbre lieu touristique du sud de la Martinique. Quel est-il ?",
+    options: ["Diamond Rock", "Tombolo", "Savane des Pétrifications", "Salines"],
+    answer: "Diamond Rock"
   },
   {
     question: "Avec une superficie d'à peine 11,89 km², quelle est la plus petite commune de la Martinique ?",
@@ -273,6 +307,12 @@ export const QUESTIONS_HARD = [
     options: ["Les Matinino", "Les Gwada Boys", "Les Panthères", "Les Yoles"],
     answer: "Les Matinino"
   },
+
+  {
+    question: "Quelle grande réalisatrice martiniquaise a réalisé le film culte 'Rue Cases-Nègres' en 1983 et a dirigé Marlon Brando à Hollywood ?",
+    options: ["Euzhan Palcy", "Sarah Maldoror", "Mariette Monpierre", "Lucien Jean-Baptiste"],
+    answer: "Euzhan Palcy"
+  },
   {
     question: "Laquelle de ces quatre communes de Guadeloupe n'est PAS située sur l'île de Grande-Terre ?",
     options: ["Petit-Bourg", "Le Moule", "Sainte-Anne", "Saint-François"],
@@ -282,6 +322,11 @@ export const QUESTIONS_HARD = [
     question: "Quel rappeur et chanteur martiniquais a cassé les scores de streaming en 2017 avec son tube 'Mwaka Moon' en duo avec Damso ?",
     options: ["Admiral T", "Kalash", "Krys", "Lord Kossity"],
     answer: "Kalash"
+  },
+  {
+   question: "Quelle nageuse martiniquaise spécialiste de la nage libre a remporté une médaille de bronze aux Jeux Olympiques de Pékin en 2008 ?",
+    options: ["Coralie Balmy", "Malia Metella", "Laura Flessel", "Mélody Julien"],
+    answer: "Coralie Balmy"
   },
   {
     question: "De quelle commune de Guadeloupe la triple championne olympique d'athlétisme Marie-José Pérec est-elle originaire ?",
