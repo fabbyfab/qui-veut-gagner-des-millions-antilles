@@ -179,4 +179,106 @@ export const QUESTIONS_DB = [
     options: ["Le Madras", "Le Wax", "Le Bogolan", "Le Batik"],
     answer: "Le Madras"
   }
+// --- NIVEAU MOYEN À DIFFICILE (SPORTS, MUSIQUE, GÉOGRAPHIE, HISTOIRE) ---
+  {
+    question: "En 2007, l'équipe de football de la Guadeloupe a réalisé un exploit historique lors de la Gold Cup. Jusqu'à quel stade est-elle allée ?",
+    options: ["Quarts de finale", "Demi-finales", "Finale", "Vainqueur"],
+    answer: "Demi-finales"
+  },
+  {
+    question: "Quelle commune de Guadeloupe est mondialement célèbre pour son cimetière aux tombes en damier noir et blanc ?",
+    options: ["Morne-à-l'Eau", "Le Moule", "Trois-Rivières", "Sainte-Rose"],
+    answer: "Morne-à-l'Eau"
+  },
+  {
+    question: "Quel tube du groupe Zouk Machine a dominé le Top 50 en France pendant 9 semaines consécutives en 1990 ?",
+    options: ["Syé Bwa", "Maldòn (la musique dans la peau)", "Kolé Séré", "Zouk-la sé sèl médikaman nou ni"],
+    answer: "Maldòn (la musique dans la peau)"
+  },
+  {
+    question: "Né à Pointe-à-Pitre, quel footballeur champion du monde 1998 a détenu pendant longtemps le record absolu de sélections en équipe de France ?",
+    options: ["Thierry Henry", "Nicolas Anelka", "Lilian Thuram", "Sylvain Wiltord"],
+    answer: "Lilian Thuram"
+  },
+  {
+    question: "Quelle était la particularité de la commune de Saint-Pierre en Martinique, avant d'être rasée par l'éruption de 1902 ?",
+    options: ["Elle était engloutie par la mer", "On la surnommait le Petit Paris des Antilles", "Elle était la plus petite de l'île", "Elle abritait un volcan de boue"],
+    answer: "On la surnommait le Petit Paris des Antilles"
+  },
+  {
+    question: "Lequel de ces célèbres chanteurs antillais n'a JAMAIS été un membre fondateur ou régulier du groupe Kassav' ?",
+    options: ["Jacob Desvarieux", "Jocelyne Béroard", "Ralph Thamar", "Jean-Philippe Marthély"],
+    answer: "Ralph Thamar"
+  },
+  {
+    question: "En Guadeloupe, que désigne-t-on précisément par le mot 'ouassou' ?",
+    options: ["Une grosse crevette d'eau douce", "Un crabe de terre", "Un fruit sauvage épineux", "Un oiseau marin"],
+    answer: "Une grosse crevette d'eau douce"
+  },
+  {
+    question: "Quel architecte français a conçu plus d'une centaine de bâtiments officiels en Guadeloupe après le passage du terrible ouragan de 1928 ?",
+    options: ["Le Corbusier", "Gustave Eiffel", "Ali Tur", "Victor Louis"],
+    answer: "Ali Tur"
+  },
+  {
+    question: "Avec une superficie d'à peine 11,89 km², quelle est la plus petite commune de la Martinique ?",
+    options: ["Bellefontaine", "Case-Pilote", "Le Carbet", "Fonds-Saint-Denis"],
+    answer: "Bellefontaine"
+  },
+  {
+    question: "Quelle escrimeuse, née à Pointe-à-Pitre, a été double championne olympique à l'épée en 1996 et surnommée 'La Guêpe' ?",
+    options: ["Laura Flessel", "Maureen Nisima", "Corinna Schumacher", "Sarah Daninthe"],
+    answer: "Laura Flessel"
+  },
+  {
+    question: "Que désigne le terme 'migan' dans le riche vocabulaire de la gastronomie antillaise ?",
+    options: ["Une purée épaisse souvent à base de fruit à pain", "Un poisson frit épicé", "Une boisson fermentée à la canne", "Une soupe de tripes de porc"],
+    answer: "Une purée épaisse souvent à base de fruit à pain"
+  },
+  {
+    question: "Surnommé le 'Mozart noir', quel compositeur classique et escrimeur prodige est né en Guadeloupe au XVIIIe siècle ?",
+    options: ["Alexandre Dumas", "Le Chevalier de Saint-Georges", "Toussaint Louverture", "Frantz Fanon"],
+    answer: "Le Chevalier de Saint-Georges"
+  },
+  {
+    question: "En Martinique, quelle commune du sud abrite la mystérieuse 'Savane des Pétrifications', une zone presque désertique ?",
+    options: ["Sainte-Anne", "Le Vauclin", "Le Marin", "Macouba"],
+    answer: "Sainte-Anne"
+  },
+  {
+    question: "Laquelle de ces communes de Guadeloupe abrite les majestueuses et spectaculaires Chutes du Carbet ?",
+    options: ["Capesterre-Belle-Eau", "Saint-Claude", "Trois-Rivières", "Gourbeyre"],
+    answer: "Capesterre-Belle-Eau"
+  },
+  {
+    question: "Quel défenseur international français, devenu champion du monde en 2018, possède de fortes origines martiniquaises (Le Morne-Rouge) de par son père ?",
+    options: ["Raphaël Varane", "Presnel Kimpembe", "Samuel Umtiti", "N'Golo Kanté"],
+    answer: "Raphaël Varane"
+  },
+  {
+    question: "Quelle grande voix martiniquaise a remporté un immense succès dans les années 80 avec la chanson culte 'Caresse mwen' ?",
+    options: ["Tanya Saint-Val", "Jocelyne Béroard", "Edith Lefel", "Marijosé Alie"],
+    answer: "Marijosé Alie"
+  },
+  {
+    question: "Lors des compétitions internationales de football (comme la Gold Cup), quel est le surnom officiel de l'équipe de la Martinique ?",
+    options: ["Les Matinino", "Les Gwada Boys", "Les Panthères", "Les Yoles"],
+    answer: "Les Matinino"
+  },
+  {
+    question: "Laquelle de ces quatre communes de Guadeloupe n'est PAS située sur l'île de Grande-Terre ?",
+    options: ["Petit-Bourg", "Le Moule", "Sainte-Anne", "Saint-François"],
+    answer: "Petit-Bourg"
+  },
+  {
+    question: "Quel rappeur et chanteur martiniquais a cassé les scores de streaming en 2017 avec son tube 'Mwaka Moon' en duo avec Damso ?",
+    options: ["Admiral T", "Kalash", "Krys", "Lord Kossity"],
+    answer: "Kalash"
+  },
+  {
+    question: "De quelle commune de Guadeloupe la triple championne olympique d'athlétisme Marie-José Pérec est-elle originaire ?",
+    options: ["Basse-Terre", "Pointe-à-Pitre", "Les Abymes", "Sainte-Anne"],
+    answer: "Basse-Terre"
+  }
+
 ];
