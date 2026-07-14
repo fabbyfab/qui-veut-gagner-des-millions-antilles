@@ -19,22 +19,19 @@ export default function Game() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
+  
+  // NOUVEAU : État pour cacher les mauvaises réponses du 50:50
+  const [hiddenOptions, setHiddenOptions] = useState<string[]>([]);
+  
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
-  
-  // Stockage des 15 questions de la partie en cours
   const [gameQuestions, setGameQuestions] = useState<Question[]>([]);
-  
-  // Gestion de la musique
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const bgAudio = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Initialisation sécurisée de la musique (côté client uniquement)
     bgAudio.current = new Audio('/sounds/background.mp3');
     bgAudio.current.loop = true;
     bgAudio.current.volume = 0.2;
-
-    // Lancement de la première partie
     startNewGame();
   }, []);
 
@@ -52,13 +49,11 @@ export default function Game() {
 
   const startNewGame = () => {
     if (!QUESTIONS_DB || QUESTIONS_DB.length === 0) return;
-    
-    // On mélange le grand stock de questions et on en garde 15
     const shuffled = [...QUESTIONS_DB].sort(() => 0.5 - Math.random());
     setGameQuestions(shuffled.slice(0, 15));
-    
     setCurrentLevel(0);
     setJokers({ fiftyFifty: true, phone: true, audience: true });
+    setHiddenOptions([]);
     resetTurn();
   };
 
@@ -98,7 +93,7 @@ export default function Game() {
         playSound('lose');
         setTimeout(() => {
           alert("Fin de la partie ! Vous repartez avec " + getSafeHavenValue());
-          startNewGame(); // Relance une nouvelle partie
+          startNewGame();
         }, 3000);
       }
     }, 3000);
@@ -108,6 +103,7 @@ export default function Game() {
     setSelectedOption(null);
     setCorrectAnswer(null);
     setIsChecking(false);
+    setHiddenOptions([]); // Le 50:50 est réinitialisé pour la question suivante
   };
 
   const getSafeHavenValue = () => {
@@ -116,11 +112,37 @@ export default function Game() {
     return "0 €";
   };
 
-  const useJoker = (type: 'fiftyFifty' | 'phone' | 'audience') => {
-    if (!jokers[type]) return;
-    setJokers({ ...jokers, [type]: false });
-    alert(`Joker ${type} utilisé !`);
+  // --- LOGIQUE DES JOKERS ---
+
+  const useFiftyFifty = () => {
+    if (!jokers.fiftyFifty || isChecking) return;
+    setJokers({ ...jokers, fiftyFifty: false });
+    
+    const currentQ = gameQuestions[currentLevel];
+    // On trouve les mauvaises réponses
+    const wrongOptions = currentQ.options.filter(opt => opt !== currentQ.answer);
+    // On les mélange pour en cacher deux au hasard
+    const shuffledWrong = wrongOptions.sort(() => 0.5 - Math.random());
+    setHiddenOptions([shuffledWrong[0], shuffledWrong[1]]);
   };
+
+  const usePhone = () => {
+    if (!jokers.phone || isChecking) return;
+    setJokers({ ...jokers, phone: false });
+    
+    const currentQ = gameQuestions[currentLevel];
+    alert(`📞 APPEL À UN AMI :\n\n"Salut ! Écoute, je ne suis pas sûr à 100%, mais je dirais bien que c'est la réponse : ${currentQ.answer}."`);
+  };
+
+  const useAudience = () => {
+    if (!jokers.audience || isChecking) return;
+    setJokers({ ...jokers, audience: false });
+    
+    const currentQ = gameQuestions[currentLevel];
+    alert(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
+  };
+
+  // --------------------------
 
   const getButtonClass = (option: string) => {
     if (!isChecking && selectedOption === option) return "answer-btn selected";
@@ -130,14 +152,12 @@ export default function Game() {
     return "answer-btn";
   };
 
-  // Écran de chargement le temps que les questions soient mélangées
   if (gameQuestions.length === 0) {
     return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>Chargement du jeu...</div>;
   }
 
   const currentQuestion = gameQuestions[currentLevel];
 
-  // Écran de victoire si on dépasse la 15ème question
   if (!currentQuestion) return (
     <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "2rem" }}>
       🏆 Vous avez gagné le MILLION ! 🏆
@@ -149,11 +169,9 @@ export default function Game() {
   return (
     <div className="game-container">
       <div className="jokers">
-        <button className="joker-btn" disabled={!jokers.fiftyFifty} onClick={() => useJoker('fiftyFifty')}>50:50</button>
-        <button className="joker-btn" disabled={!jokers.phone} onClick={() => useJoker('phone')}>☎️</button>
-        <button className="joker-btn" disabled={!jokers.audience} onClick={() => useJoker('audience')}>👥</button>
-        
-        {/* Bouton de la musique */}
+        <button className="joker-btn" disabled={!jokers.fiftyFifty} onClick={useFiftyFifty}>50:50</button>
+        <button className="joker-btn" disabled={!jokers.phone} onClick={usePhone}>☎️</button>
+        <button className="joker-btn" disabled={!jokers.audience} onClick={useAudience}>👥</button>
         <button className="joker-btn" onClick={toggleMusic} title="Activer/Désactiver la musique">
           {isPlayingMusic ? '🔊' : '🔇'}
         </button>
@@ -165,18 +183,25 @@ export default function Game() {
         </div>
 
         <div className="answers-grid">
-          {currentQuestion.options.map((option, index) => (
-            <button
-              key={index}
-              className={getButtonClass(option)}
-              onClick={() => handleAnswer(option)}
-            >
-              <span style={{ color: '#e5b80b', fontWeight: 'bold', marginRight: '10px' }}>
-                {String.fromCharCode(65 + index)}:
-              </span>
-              {option}
-            </button>
-          ))}
+          {currentQuestion.options.map((option, index) => {
+            // NOUVEAU : Si la réponse a été éliminée par le 50:50, on la cache
+            if (hiddenOptions.includes(option)) {
+              return <div key={index} style={{ visibility: 'hidden' }}></div>;
+            }
+
+            return (
+              <button
+                key={index}
+                className={getButtonClass(option)}
+                onClick={() => handleAnswer(option)}
+              >
+                <span style={{ color: '#e5b80b', fontWeight: 'bold', marginRight: '10px' }}>
+                  {String.fromCharCode(65 + index)}:
+                </span>
+                {option}
+              </button>
+            );
+          })}
         </div>
       </div>
 
