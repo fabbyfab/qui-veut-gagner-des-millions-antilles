@@ -5,6 +5,12 @@ export const QUESTIONS_EASY = [
     options: ["L'avocat", "Le corossol", "La goyave", "Le fruit à pain"],
     answer: "L'avocat"
   },
+{
+    question: "Quel est le nom du piège de pêche traditionnel antillais, souvent fabriqué en grillage hexagonal (fil de fer) ou en bambou tressé, que les marins déposent au fond de l'eau ?",
+    options: ["Le casier", "La nasse à chatrou", "Le trémail", "Le grand verveux"],
+    answer: "Le casier"
+  },
+  
   { 
   question: "À quel fruit exotique Francky Vincent a-t-il dédié sa chanson la plus vendue, véritable hymne des soirées festives ?",
     options: ["Le fruit de la passion", "La mangue", "Le corossol", "La goyave"],
@@ -55,6 +61,12 @@ export const QUESTIONS_EASY = [
     question: "Comment appelle-t-on le cocktail traditionnel fait de rhum, de citron vert et de sucre de canne ?",
     options: ["Le ti-punch", "Le mojito", "La pina colada", "Le daiquiri"],
     answer: "Le ti-punch"
+  },
+
+  {
+    question: "Très apprécié grillé ou en court-bouillon, quel poisson pélagique ou de récif, de couleur rouge ou rose vif, est l'un des plus prisés et chers sur les marchés antillais ?",
+    options: ["Le vivaneau", "Le balaou", "Le thazard", "La bourse"],
+    answer: "Le vivaneau"
   },
   {
     question: "Comment dit-on 'Comment ça va ?' en créole ?",
@@ -335,6 +347,11 @@ export const QUESTIONS_HARD = [
     options: ["Admiral T", "Kalash", "Krys", "Lord Kossity"],
     answer: "Kalash"
   },
+  { 
+  question: "La grande réalisatrice martiniquaise Euzhan Palcy détient un record historique absolu dans le cinéma mondial. Lequel ?",
+    options: ["Première femme noire réalisatrice produite par un grand studio hollywoodien", "Première femme à remporter l'Oscar du meilleur film", "Première réalisatrice à obtenir 3 Palmes d'Or", "Première femme à réaliser un film de science-fiction"],
+    answer: "Première femme noire réalisatrice produite par un grand studio hollywoodien"
+   },
   {
    question: "Quelle nageuse martiniquaise spécialiste de la nage libre a remporté une médaille de bronze aux Jeux Olympiques de Pékin en 2008 ?",
     options: ["Coralie Balmy", "Malia Metella", "Laura Flessel", "Mélody Julien"],
