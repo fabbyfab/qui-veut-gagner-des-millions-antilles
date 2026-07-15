@@ -150,16 +150,17 @@ body {
   
   .main-board {
     flex: 2.5; 
-    justify-content: flex-start; /* Remonte les questions au milieu de l'écran */
-    padding-top: 80px; /* Laisse de l'espace en haut pour ne pas cacher les jokers */
+    justify-content: flex-start;
+    padding-top: 110px; /* Espace pour que la question descende sous les jokers */
     padding-bottom: 0px;
   }
   
   .money-tree {
     flex: 1;
-    padding: 5px;
+    padding: 10px 2px;
     font-size: 0.65rem;
     min-width: 90px;
+    justify-content: space-between; /* Permet d'étirer l'espacement pour que tout rentre */
   }
   
   .question-container {
@@ -184,8 +185,8 @@ body {
   }
   
   .gain-level {
-    padding: 3px 5px;
-    white-space: nowrap; /* Force les euros à rester sur la même ligne */
+    padding: 2px 5px; /* On réduit l'espacement vertical ici */
+    white-space: nowrap; 
     gap: 5px;
   }
   
@@ -196,9 +197,12 @@ body {
   }
   
   .joker-btn {
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Bulle agrandie */
+    height: 50px;
     font-size: 0.8rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centrage parfait du texte dans le cercle */
   }
 }
-
