@@ -138,3 +138,64 @@ body {
   opacity: 0.3;
   cursor: not-allowed;
 }
+
+/* ========================================= */
+/* 📱 VERSION "MINI-PC" POUR MOBILE          */
+/* ========================================= */
+@media screen and (max-width: 900px) {
+  .game-container {
+    flex-direction: row;
+    padding: 10px 5px;
+  }
+  
+  .main-board {
+    flex: 2.5; 
+    padding-bottom: 20px;
+  }
+  
+  .money-tree {
+    flex: 1;
+    padding: 5px;
+    font-size: 0.65rem;
+    min-width: 90px;
+  }
+  
+  .question-container {
+    font-size: 0.9rem;
+    width: 95%;
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+  
+  .answers-grid {
+    width: 98%;
+    gap: 5px;
+  }
+  
+  .answer-btn {
+    font-size: 0.75rem;
+    padding: 10px;
+    padding-left: 15px;
+    min-height: 55px;
+    white-space: normal;
+    line-height: 1.2;
+  }
+  
+  .gain-level {
+    padding: 3px 5px;
+    white-space: nowrap; /* Force les euros à rester sur la même ligne */
+    gap: 5px;
+  }
+  
+  .jokers {
+    top: 10px;
+    left: 10px;
+    gap: 5px;
+  }
+  
+  .joker-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+}
