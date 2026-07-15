@@ -15,8 +15,7 @@ type Question = {
 };
 
 export default function Game() {
-  // AJOUT DE L'ÉTAT 'milestone'
-  const [gameState, setGameState] = useState<'welcome' | 'playing' | 'milestone'>('welcome');
+  const [gameState, setGameState] = useState<'welcome' | 'playing'>('welcome');
   const [currentLevel, setCurrentLevel] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isChecking, setIsChecking] = useState(false);
@@ -39,10 +38,6 @@ export default function Game() {
         bgAudio.current.pause();
         setIsPlayingMusic(false);
       } else {
-        if (gameState === 'playing') {
-          alert("🤫 La musique se lancera automatiquement quand vous atteindrez un palier de sécurité !");
-          return;
-        }
         bgAudio.current.play().catch(e => console.log("Erreur audio:", e));
         setIsPlayingMusic(true);
       }
@@ -104,18 +99,8 @@ export default function Game() {
       if (option === currentQ.answer) {
         playSound('win');
         setTimeout(() => {
-          const nextLevel = currentLevel + 1;
-          setCurrentLevel(nextLevel);
+          setCurrentLevel(currentLevel + 1);
           resetTurn();
-
-          // MODIFICATION : On affiche l'écran de palier après la 4ème et la 12ème question
-          if (nextLevel === 4 || nextLevel === 12) {
-            setGameState('milestone');
-            if (bgAudio.current && !isPlayingMusic) {
-              bgAudio.current.play().catch(e => console.log("Erreur audio:", e));
-              setIsPlayingMusic(true);
-            }
-          }
         }, 3000);
       } else {
         playSound('lose');
@@ -218,37 +203,7 @@ export default function Game() {
     );
   }
 
-  // --- ÉCRAN 2 : LE PASSAGE DE PALIER ---
-  if (gameState === 'milestone') {
-    const milestoneAmount = MONEY_TREE[currentLevel - 1]; 
-    
-    return (
-      <div className="game-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', textAlign: 'center' }}>
-        <h1 style={{ color: '#e5b80b', fontSize: '4rem', textShadow: '2px 2px 10px #000', margin: '0 0 20px 0' }}>
-          🎉 FÉLICITATIONS ! 🎉
-        </h1>
-        <h2 style={{ color: 'white', fontSize: '2rem', marginBottom: '50px' }}>
-          Vous venez de sécuriser le palier de <br/>
-          <span style={{ color: '#e5b80b', fontSize: '3rem', fontWeight: 'bold' }}>{milestoneAmount}</span> !
-        </h2>
-
-        <button
-          onClick={() => {
-            if (bgAudio.current) {
-              bgAudio.current.pause();
-              setIsPlayingMusic(false);
-            }
-            setGameState('playing');
-          }}
-          style={{ padding: '15px 40px', fontSize: '1.5rem', borderRadius: '30px', background: '#e5b80b', border: '3px solid white', color: 'black', fontWeight: 'bold', cursor: 'pointer', textTransform: 'uppercase', boxShadow: '0px 0px 15px rgba(229, 184, 11, 0.5)' }}
-        >
-          Continuer vers le palier suivant ➡️
-        </button>
-      </div>
-    );
-  }
-
-  // --- ÉCRAN 3 : LE PLATEAU DE JEU ---
+  // --- ÉCRAN 2 : LE PLATEAU DE JEU ---
   if (gameQuestions.length < 15) {
     return <div style={{ color: "white", padding: "50px", textAlign: "center", fontSize: "1.5rem" }}>
       ⚠️ Attention : Il vous faut au moins 5 questions de chaque niveau (Facile, Moyen, Difficile) dans votre fichier questions.ts pour lancer le jeu !<br/>
