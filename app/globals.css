@@ -150,7 +150,9 @@ body {
   
   .main-board {
     flex: 2.5; 
-    padding-bottom: 20px;
+    justify-content: center; /* Remonte les questions au milieu de l'écran */
+    padding-top: 80px; /* Laisse de l'espace en haut pour ne pas cacher les jokers */
+    padding-bottom: 0px;
   }
   
   .money-tree {
@@ -199,3 +201,4 @@ body {
     font-size: 0.8rem;
   }
 }
+
