@@ -115,6 +115,12 @@ export const QUESTIONS_MEDIUM = [
     options: ["1898", "1902", "1914", "1928"],
     answer: "1902"
   },
+{
+    question: "Comment appelle-t-on la célèbre coiffe traditionnelle antillaise, faite en madras, dont le nombre de pointes indique si la femme est un cœur à prendre ?",
+    options: ["La tête marée", "Le bakoua", "Le salako", "tèt kréyol"],
+    answer: "La tête marée"
+  },
+  
   {
     question: "Quel est l'ingrédient principal du féroce ?",
     options: ["Le crabe", "La morue", "Le poulet", "Le lambi"],
@@ -145,6 +151,12 @@ export const QUESTIONS_MEDIUM = [
     options: ["Joséphine de Beauharnais", "Marie-Antoinette", "Olympe de Gouges", "Jeanne d'Arc"],
     answer: "Joséphine de Beauharnais"
   },
+{
+    question: "Comment s'appelle le grand tambour, chevauché par le musicien, qui est l'instrument de base du Bèlè martiniquais ?",
+    options: ["Le tambour bèlè", "Le ka", "Le djembe", "Le chacha"],
+    answer: "Le tambour bèlè"
+  },
+  
   {
     question: "Quel plat traditionnel de Pâques aux Antilles est préparé à base de crabe ?",
     options: ["Le matoutou / matété", "Le colombo", "Le blaff", "Le court-bouillon"],
