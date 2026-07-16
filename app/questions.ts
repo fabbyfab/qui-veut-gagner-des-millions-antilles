@@ -5,6 +5,22 @@ export const QUESTIONS_EASY = [
     options: ["L'avocat", "Le corossol", "La goyave", "Le fruit à pain"],
     answer: "L'avocat"
   },
+  {
+    question: "Laquelle de ces îles NE fait PAS partie des Petites Antilles ?",
+    options: ["Cuba", "La Dominique", "Sainte-Lucie", "La Barbade"],
+    answer: "Cuba"
+  },
+{
+    question: "Quelle petite île, dépendance de la Guadeloupe, est particulièrement réputée pour ses moulins et son rhum ?",
+    options: ["Marie-Galante", "Saint-Barthélemy", "La Désirade", "Saint-Martin"],
+    answer: "Marie-Galante"
+  },
+  {
+    question: "Comment s'appelle le célèbre volcan situé en Martinique ?",
+    options: ["La Montagne Pelée", "Le Piton de la Fournaise", "La Soufrière", "Le Vésuve"],
+    answer: "La Montagne Pelée"
+  },
+  
 {
     question: "Quel est le nom du piège de pêche traditionnel antillais, souvent fabriqué en grillage hexagonal (fil de fer) ou en bambou tressé, que les marins déposent au fond de l'eau ?",
     options: ["Le casier", "La nasse à chatrou", "Le trémail", "Le grand verveux"],
@@ -132,7 +148,11 @@ export const QUESTIONS_MEDIUM = [
     options: ["La tête marée", "Le bakoua", "Le salako", "tèt kréyol"],
     answer: "La tête marée"
   },
-  
+  {
+    question: "En créole antillais, que signifie exactement le mot 'zouk' à l'origine ?",
+    options: ["Une fête ou un bal", "Un instrument de musique", "Un plat épicé", "Une danse de combat"],
+    answer: "Une fête ou un bal"
+  },
   {
     question: "Quel est l'ingrédient principal du féroce ?",
     options: ["Le crabe", "La morue", "Le poulet", "Le lambi"],
