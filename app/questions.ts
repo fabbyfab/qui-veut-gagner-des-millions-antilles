@@ -298,11 +298,20 @@ export const QUESTIONS_HARD = [
     answer: "Une grosse crevette d'eau douce"
   },
   {
+    question: "Lors de quel voyage Christophe Colomb a-t-il débarqué en Guadeloupe pour la première fois (en 1493) ?",
+    options: ["Son deuxième voyage", "Son premier voyage", "Son troisième voyage", "Son quatrième voyage"],
+    answer: "Son deuxième voyage"
+  },
+  {
     question: "Quel architecte français a conçu plus d'une centaine de bâtiments officiels en Guadeloupe après le passage du terrible ouragan de 1928 ?",
     options: ["Le Corbusier", "Gustave Eiffel", "Ali Tur", "Victor Louis"],
     answer: "Ali Tur"
   },
-
+{
+    question: "Comment se nomme le chapeau traditionnel des pêcheurs antillais, tressé à partir de feuilles séchées ?",
+    options: ["Le bakoua", "Le salacco", "Le panama", "Le madras"],
+    answer: "Le bakoua"
+  },
   {
     question: "En 2022, le rappeur martiniquais Kalash a sorti un album portant le nom d'un célèbre lieu touristique du sud de la Martinique. Quel est-il ?",
     options: ["Diamond Rock", "Tombolo", "Savane des Pétrifications", "Salines"],
@@ -374,6 +383,12 @@ export const QUESTIONS_HARD = [
     options: ["Première femme noire réalisatrice produite par un grand studio hollywoodien", "Première femme à remporter l'Oscar du meilleur film", "Première réalisatrice à obtenir 3 Palmes d'Or", "Première femme à réaliser un film de science-fiction"],
     answer: "Première femme noire réalisatrice produite par un grand studio hollywoodien"
    },
+
+  {
+    question: "Quelle célèbre écrivaine guadeloupéenne a écrit 'Ségou' et a remporté le Prix Nobel alternatif de littérature en 2018 ?",
+    options: ["Maryse Condé", "Simone Schwarz-Bart", "Gisèle Pineau", "Jocelyne Béroard"],
+    answer: "Maryse Condé"
+  },
   {
    question: "Quelle nageuse martiniquaise spécialiste de la nage libre a remporté une médaille de bronze aux Jeux Olympiques de Pékin en 2008 ?",
     options: ["Coralie Balmy", "Malia Metella", "Laura Flessel", "Mélody Julien"],
