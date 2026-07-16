@@ -126,8 +126,8 @@ export const QUESTIONS_MEDIUM = [
   // --- PALIER 2 : QUESTIONS MOYENNES (De 2 000€ à 24 000€) ---
   {
     question: "Quelle île de la Guadeloupe est célèbre pour son tourment d'amour ?",
-    options: ["Marie-Galante", "La Désirade", "Terre-de-Haut", "Grande-Terre"],
-    answer: "Terre-de-Haut"
+    options: ["Marie-Galante", "La Désirade", "Ile des saintes", "Grande-Terre"],
+    answer: "Ile des saintes"
   },
   {
     question: "En quelle année a eu lieu l'éruption de la Montagne Pelée en Martinique ?",
