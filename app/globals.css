@@ -142,6 +142,57 @@ body {
 }
 
 /* ========================================= */
+/* 🃏 BOÎTE DE RÉSULTAT DES JOKERS           */
+/* ========================================= */
+.joker-result-box {
+  background: linear-gradient(180deg, #000033 0%, #000099 100%);
+  border: 2px solid #e5b80b;
+  border-radius: 15px;
+  color: white;
+  width: 80%; 
+  margin-top: 25px; 
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(229, 184, 11, 0.4); 
+  animation: fade-in-up 0.4s ease-out; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-sizing: border-box;
+}
+
+.joker-result-box p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: pre-wrap; /* Permet d'interpréter les sauts de ligne \n */
+  line-height: 1.4;
+}
+
+.close-joker-btn {
+  background: #e5b80b;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-joker-btn:hover {
+  background: #ffaa00;
+  transform: scale(1.05);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================= */
 /* 📱 VERSION "MINI-PC" POUR MOBILE          */
 /* ========================================= */
 @media screen and (max-width: 900px) {
@@ -160,13 +211,13 @@ body {
   .money-tree {
     flex: 1;
     padding: 2px;
-    font-size: 0.75rem; /* PLUS GROS : passé de 0.55rem à 0.75rem */
+    font-size: 0.75rem; 
     min-width: 90px;
     justify-content: space-evenly;
   }
   
   .question-container {
-    font-size: 1.1rem; /* PLUS GROS : passé de 0.9rem à 1.1rem */
+    font-size: 1.1rem; 
     width: 88%; 
     margin-right: 5px; 
     margin-bottom: 15px;
@@ -181,10 +232,10 @@ body {
   }
   
   .answer-btn {
-    font-size: 0.9rem; /* PLUS GROS : passé de 0.75rem à 0.9rem */
+    font-size: 0.9rem; 
     padding: 10px;
     padding-left: 15px;
-    min-height: 60px; /* Légèrement augmenté pour le texte plus gros */
+    min-height: 60px; 
     white-space: normal;
     line-height: 1.2;
     box-sizing: border-box;
@@ -206,10 +257,27 @@ body {
   .joker-btn {
     width: 50px;
     height: 50px;
-    font-size: 1rem; /* PLUS GROS : passé de 0.8rem à 1rem */
+    font-size: 1rem; 
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  /* Ajustement de la boîte joker pour mobile */
+  .joker-result-box {
+    width: 90%;
+    margin-right: 5px;
+    margin-top: 15px;
+    padding: 10px;
+  }
+  
+  .joker-result-box p {
+    font-size: 0.9rem;
+  }
+  
+  .close-joker-btn {
+    padding: 5px 20px;
+    font-size: 0.9rem;
   }
 }
