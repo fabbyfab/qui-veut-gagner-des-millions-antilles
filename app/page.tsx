@@ -50,11 +50,15 @@ export default function Game() {
     const shuffledMedium = [...QUESTIONS_MEDIUM].sort(() => 0.5 - Math.random());
     const shuffledHard = [...QUESTIONS_HARD].sort(() => 0.5 - Math.random());
 
+    // On sélectionne les questions ET on mélange l'ordre de leurs 4 options
     const finalQuestions = [
       ...shuffledEasy.slice(0, 5),
       ...shuffledMedium.slice(0, 5),
       ...shuffledHard.slice(0, 5)
-    ];
+    ].map(q => ({
+      ...q,
+      options: [...q.options].sort(() => 0.5 - Math.random()) // Le mélange se fait ici !
+    }));
 
     setGameQuestions(finalQuestions);
     setCurrentLevel(0);
