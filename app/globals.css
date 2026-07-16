@@ -160,31 +160,31 @@ body {
   .money-tree {
     flex: 1;
     padding: 2px;
-    font-size: 0.55rem;
+    font-size: 0.75rem; /* PLUS GROS : passé de 0.55rem à 0.75rem */
     min-width: 90px;
     justify-content: space-evenly;
   }
   
   .question-container {
-    font-size: 0.9rem;
-    width: 88%; /* Réduit pour s'éloigner de la ligne jaune */
-    margin-right: 5px; /* Éloigne la boîte vers la gauche */
+    font-size: 1.1rem; /* PLUS GROS : passé de 0.9rem à 1.1rem */
+    width: 88%; 
+    margin-right: 5px; 
     margin-bottom: 15px;
     padding: 10px;
-    box-sizing: border-box; /* Empêche la boîte de grossir avec le padding */
+    box-sizing: border-box; 
   }
   
   .answers-grid {
-    width: 90%; /* Marge de sécurité appliquée ici aussi */
+    width: 90%; 
     margin-right: 5px;
     gap: 5px;
   }
   
   .answer-btn {
-    font-size: 0.75rem;
+    font-size: 0.9rem; /* PLUS GROS : passé de 0.75rem à 0.9rem */
     padding: 10px;
     padding-left: 15px;
-    min-height: 55px;
+    min-height: 60px; /* Légèrement augmenté pour le texte plus gros */
     white-space: normal;
     line-height: 1.2;
     box-sizing: border-box;
@@ -206,7 +206,7 @@ body {
   .joker-btn {
     width: 50px;
     height: 50px;
-    font-size: 0.8rem;
+    font-size: 1rem; /* PLUS GROS : passé de 0.8rem à 1rem */
     padding: 0;
     display: flex;
     justify-content: center;
