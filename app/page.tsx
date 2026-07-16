@@ -21,6 +21,7 @@ export default function Game() {
   const [isChecking, setIsChecking] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
   const [hiddenOptions, setHiddenOptions] = useState<string[]>([]);
+  const [jokerMessage, setJokerMessage] = useState<string | null>(null); // NOUVEAU: État pour la boîte du joker
   const [jokers, setJokers] = useState({ fiftyFifty: true, phone: true, audience: true });
   const [gameQuestions, setGameQuestions] = useState<Question[]>([]);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
@@ -121,6 +122,7 @@ export default function Game() {
     setCorrectAnswer(null);
     setIsChecking(false);
     setHiddenOptions([]); 
+    setJokerMessage(null); // Cache le message du joker au tour suivant
   };
 
   const getSafeHavenValue = () => {
@@ -146,7 +148,8 @@ export default function Game() {
     playSound('joker');
     
     const currentQ = gameQuestions[currentLevel];
-    alert(`📞 APPEL À UN AMI :\n\n"Salut ! Écoute, je ne suis pas sûr à 100%, mais je dirais bien que c'est la réponse : ${currentQ.answer}."`);
+    // Remplacement de l'alert() par setJokerMessage
+    setJokerMessage(`📞 APPEL À UN AMI :\n\n"Salut ! Écoute, je ne suis pas sûr à 100%, mais je dirais bien que c'est la réponse : ${currentQ.answer}."`);
   };
 
   const useAudience = () => {
@@ -155,7 +158,8 @@ export default function Game() {
     playSound('joker');
     
     const currentQ = gameQuestions[currentLevel];
-    alert(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
+    // Remplacement de l'alert() par setJokerMessage
+    setJokerMessage(`👥 AVIS DU PUBLIC :\n\n✔️ ${currentQ.answer} : 72%\n❌ Les autres réponses se partagent les 28% restants.`);
   };
 
   const getButtonClass = (option: string) => {
@@ -257,6 +261,16 @@ export default function Game() {
             );
           })}
         </div>
+
+        {/* --- NOUVEAU: BOÎTE DE RÉSULTAT DES JOKERS --- */}
+        {jokerMessage && (
+          <div className="joker-result-box">
+            <p>{jokerMessage}</p>
+            <button className="close-joker-btn" onClick={() => setJokerMessage(null)}>
+              OK
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="money-tree">
