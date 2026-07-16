@@ -3,15 +3,15 @@ body {
   font-family: 'Arial', sans-serif;
   background: radial-gradient(circle at center, #0a0a3a 0%, #000000 100%);
   color: white;
-  height: 100vh; /* Sécurité pour les vieux écrans */
-  height: 100dvh; /* S'adapte à la barre d'adresse mobile ! */
+  height: 100vh;
+  height: 100dvh; 
   overflow: hidden;
 }
 
 .game-container {
   display: flex;
-  height: 100vh; /* Sécurité pour les vieux écrans */
-  height: 100dvh; /* S'adapte à la barre d'adresse mobile ! */
+  height: 100vh;
+  height: 100dvh; 
   padding: 20px;
   box-sizing: border-box;
 }
@@ -147,7 +147,7 @@ body {
 @media screen and (max-width: 900px) {
   .game-container {
     flex-direction: row;
-    padding: 5px; /* J'ai encore réduit les marges globales pour sauver de l'espace */
+    padding: 5px; 
   }
   
   .main-board {
@@ -159,7 +159,7 @@ body {
   
   .money-tree {
     flex: 1;
-    padding: 2px; /* Marges réduites au maximum */
+    padding: 2px;
     font-size: 0.55rem;
     min-width: 90px;
     justify-content: space-evenly;
@@ -167,13 +167,16 @@ body {
   
   .question-container {
     font-size: 0.9rem;
-    width: 95%;
+    width: 88%; /* Réduit pour s'éloigner de la ligne jaune */
+    margin-right: 5px; /* Éloigne la boîte vers la gauche */
     margin-bottom: 15px;
     padding: 10px;
+    box-sizing: border-box; /* Empêche la boîte de grossir avec le padding */
   }
   
   .answers-grid {
-    width: 98%;
+    width: 90%; /* Marge de sécurité appliquée ici aussi */
+    margin-right: 5px;
     gap: 5px;
   }
   
@@ -184,13 +187,14 @@ body {
     min-height: 55px;
     white-space: normal;
     line-height: 1.2;
+    box-sizing: border-box;
   }
   
   .gain-level {
     padding: 0px 5px;
     white-space: nowrap;
     gap: 5px;
-    line-height: 1; /* Compression maximale de la hauteur de ligne */
+    line-height: 1; 
   }
   
   .jokers {
