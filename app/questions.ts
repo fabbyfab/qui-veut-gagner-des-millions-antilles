@@ -1,15 +1,6 @@
 export const QUESTIONS_EASY = [
   // --- PALIER 1 : QUESTIONS FACILES (De 200€ à 1 500€) ---
- {
-    question: "Quel sandwich traditionnel guadeloupéen est frit dans l'huile et souvent fourré à la morue ?",
-    options: ["Le bokit", "Le pan bagnat", "L'agoulou", "Le féroce"],
-    answer: "Le bokit"
-  },
-  {
-    question: "Laquelle de ces îles NE fait PAS partie des Petites Antilles ?",
-    options: ["Cuba", "La Dominique", "Sainte-Lucie", "La Barbade"],
-    answer: "Cuba"
-  },
+ 
 {
     question: "Quelle petite île, dépendance de la Guadeloupe, est particulièrement réputée pour ses moulins et son rhum ?",
     options: ["Marie-Galante", "Saint-Barthélemy", "La Désirade", "Saint-Martin"],
@@ -239,6 +230,17 @@ export const QUESTIONS_MEDIUM = [
     question: "Sur quelle île de Guadeloupe peut-on visiter la célèbre 'Pointe des Châteaux' ?",
     options: ["Grande-Terre", "Basse-Terre", "Marie-Galante", "La Désirade"],
     answer: "Grande-Terre"
+  },
+
+  {
+    question: "Quel sandwich traditionnel guadeloupéen est frit dans l'huile et souvent fourré à la morue ?",
+    options: ["Le bokit", "Le pan bagnat", "L'agoulou", "Le féroce"],
+    answer: "Le bokit"
+  },
+  {
+    question: "Laquelle de ces îles NE fait PAS partie des Petites Antilles ?",
+    options: ["Cuba", "La Dominique", "Sainte-Lucie", "La Barbade"],
+    answer: "Cuba"
   },
   {
     question: "Avec ses 120 mètres de dénivelé, quelle est la plus haute cascade de la Martinique ?",
