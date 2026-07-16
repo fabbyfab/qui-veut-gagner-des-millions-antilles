@@ -179,7 +179,11 @@ export const QUESTIONS_MEDIUM = [
     options: ["Le tambour bèlè", "Le ka", "Le djembe", "Le chacha"],
     answer: "Le tambour bèlè"
   },
-  
+  {
+    question: "Quel petit mammifère a été introduit aux Antilles au 19ème siècle pour chasser les serpents venimeux dans les champs de canne ?",
+    options: ["La mangouste", "L'iguane", "Le manicou", "Le tatou"],
+    answer: "La mangouste"
+  },
   {
     question: "Quel plat traditionnel de Pâques aux Antilles est préparé à base de crabe ?",
     options: ["Le matoutou / matété", "Le colombo", "Le blaff", "Le court-bouillon"],
@@ -359,8 +363,8 @@ export const QUESTIONS_HARD = [
   },
   {
     question: "Lors des compétitions internationales de football (comme la Gold Cup), quel est le surnom officiel de l'équipe de la Martinique ?",
-    options: ["Les Matinino", "Les Gwada Boys", "Les Panthères", "Les Yoles"],
-    answer: "Les Matinino"
+    options: ["Les Matininos", "Les Gwada Boys", "Les Panthères", "Les Madininas"],
+    answer: "Les Matininos"
   },
 
   {
