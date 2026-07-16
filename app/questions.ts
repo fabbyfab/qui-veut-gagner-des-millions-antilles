@@ -1,9 +1,9 @@
 export const QUESTIONS_EASY = [
   // --- PALIER 1 : QUESTIONS FACILES (De 200€ à 1 500€) ---
-  {
-    question: "Quel fruit épineux et odorant appelle-t-on 'Zaboka' en créole ?",
-    options: ["L'avocat", "Le corossol", "La goyave", "Le fruit à pain"],
-    answer: "L'avocat"
+ {
+    question: "Quel sandwich traditionnel guadeloupéen est frit dans l'huile et souvent fourré à la morue ?",
+    options: ["Le bokit", "Le pan bagnat", "L'agoulou", "Le féroce"],
+    answer: "Le bokit"
   },
   {
     question: "Laquelle de ces îles NE fait PAS partie des Petites Antilles ?",
