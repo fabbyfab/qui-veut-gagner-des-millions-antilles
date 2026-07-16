@@ -3,13 +3,15 @@ body {
   font-family: 'Arial', sans-serif;
   background: radial-gradient(circle at center, #0a0a3a 0%, #000000 100%);
   color: white;
-  height: 100vh;
+  height: 100vh; /* Sécurité pour les vieux écrans */
+  height: 100dvh; /* S'adapte à la barre d'adresse mobile ! */
   overflow: hidden;
 }
 
 .game-container {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Sécurité pour les vieux écrans */
+  height: 100dvh; /* S'adapte à la barre d'adresse mobile ! */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -145,22 +147,22 @@ body {
 @media screen and (max-width: 900px) {
   .game-container {
     flex-direction: row;
-    padding: 10px 5px;
+    padding: 5px; /* J'ai encore réduit les marges globales pour sauver de l'espace */
   }
   
   .main-board {
     flex: 2.5; 
-    justify-content: flex-start; /* Aligne les questions vers le haut */
-    padding-top: 110px; /* Laisse de l'espace en haut pour ne pas cacher les jokers */
+    justify-content: flex-start;
+    padding-top: 100px;
     padding-bottom: 0px;
   }
   
   .money-tree {
     flex: 1;
-    padding: 5px 2px; /* On réduit les marges tout en haut et en bas de l'arbre */
-    font-size: 0.55rem; /* On diminue encore un tout petit peu la taille du texte */
+    padding: 2px; /* Marges réduites au maximum */
+    font-size: 0.55rem;
     min-width: 90px;
-    justify-content: space-evenly; /* Permet de répartir parfaitement l'espace disponible */
+    justify-content: space-evenly;
   }
   
   .question-container {
@@ -185,9 +187,10 @@ body {
   }
   
   .gain-level {
-    padding: 0px 5px; /* Zéro espace vertical imposé, on laisse le téléphone calculer ! */
-    white-space: nowrap; /* Force les euros à rester sur la même ligne */
+    padding: 0px 5px;
+    white-space: nowrap;
     gap: 5px;
+    line-height: 1; /* Compression maximale de la hauteur de ligne */
   }
   
   .jokers {
@@ -197,12 +200,12 @@ body {
   }
   
   .joker-btn {
-    width: 50px; /* On agrandit la bulle */
-    height: 50px; /* On agrandit la bulle */
-    font-size: 0.8rem; /* On garde la taille du texte d'origine */
+    width: 50px;
+    height: 50px;
+    font-size: 0.8rem;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centre parfaitement le texte et l'icône dans le cercle */
+    align-items: center;
   }
 }
