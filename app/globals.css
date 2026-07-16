@@ -157,10 +157,10 @@ body {
   
   .money-tree {
     flex: 1;
-    padding: 10px 2px;
-    font-size: 0.65rem;
+    padding: 5px 2px; /* On réduit les marges tout en haut et en bas de l'arbre */
+    font-size: 0.55rem; /* On diminue encore un tout petit peu la taille du texte */
     min-width: 90px;
-    justify-content: space-between; /* Répartit mieux les 15 paliers sur toute la hauteur */
+    justify-content: space-evenly; /* Permet de répartir parfaitement l'espace disponible */
   }
   
   .question-container {
@@ -185,7 +185,7 @@ body {
   }
   
   .gain-level {
-    padding: 2px 5px; /* On réduit l'espacement vertical pour faire remonter le 200 € */
+    padding: 0px 5px; /* Zéro espace vertical imposé, on laisse le téléphone calculer ! */
     white-space: nowrap; /* Force les euros à rester sur la même ligne */
     gap: 5px;
   }
