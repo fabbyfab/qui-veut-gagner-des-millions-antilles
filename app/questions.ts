@@ -184,6 +184,11 @@ export const QUESTIONS_MEDIUM = [
     answer: "La morue"
   },
   {
+    question: "Quel pont crucial (et célèbre pour ses immenses embouteillages) relie la Grande-Terre à la Basse-Terre en Guadeloupe ?",
+    options: ["Le Pont de l'Alliance", "Le Pont de la Lézarde", "Le Pont de la Gabarre", "Le Viaduc de la Soufrière"],
+    answer: "Le Pont de la Gabarre",
+  },
+  {
     question: "Quel célèbre écrivain martiniquais a écrit le 'Cahier d'un retour au pays natal' ?",
     options: ["Edouard Glissant", "Patrick Chamoiseau", "Aimé Césaire", "Frantz Fanon"],
     answer: "Aimé Césaire"
