@@ -7,6 +7,11 @@ export const QUESTIONS_EASY = [
     answer: "Marie-Galante"
   },
   {
+    question: "Lequel de ces départements ou territoires d'outre-mer NE se trouve PAS dans l'océan Atlantique/Caraïbes ?",
+    options: ["La Martinique", "La Guyane", "La Réunion", "Saint-Barthélemy"],
+    answer: "La Réunion",
+  },
+  {
     question: "Comment s'appelle le célèbre volcan situé en Martinique ?",
     options: ["La Montagne Pelée", "Le Piton de la Fournaise", "La Soufrière", "Le Vésuve"],
     answer: "La Montagne Pelée"
