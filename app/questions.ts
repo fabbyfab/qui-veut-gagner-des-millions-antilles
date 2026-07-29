@@ -139,6 +139,11 @@ export const QUESTIONS_MEDIUM = [
     answer: "Ile des saintes"
   },
   {
+    question: "En Martinique, qu'appelle-t-on la 'Matoutou falaise' ?",
+    options: ["Une danse traditionnelle", "Une mygale endémique très colorée", "Une variété de mangue", "Une petite grenouille venimeuse"],
+    answer: "Une mygale endémique très colorée",
+  },
+  {
     question: "Quel est le seul bras de mer naturel qui sépare la Guadeloupe en deux îles distinctes (Basse-Terre et Grande-Terre) ?",
     options: ["Le Canal des Saintes", "La Lézarde", "La Rivière Salée", "Le Détroit de la Désirade"],
     answer: "La Rivière Salée",
