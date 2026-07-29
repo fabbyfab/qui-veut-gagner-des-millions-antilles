@@ -11,7 +11,11 @@ export const QUESTIONS_EASY = [
     options: ["La Montagne Pelée", "Le Piton de la Fournaise", "La Soufrière", "Le Vésuve"],
     answer: "La Montagne Pelée"
   },
-  
+  {
+    question: "Comment appelle-t-on l'arbre gigantesque aux impressionnantes racines aériennes, souvent associé aux esprits dans le folklore antillais ?",
+    options: ["Le Fromager", "Le Baobab", "Le Mancenillier", "L'Acajou"],
+    answer: "Le Fromager",
+  },
 {
     question: "Quel est le nom du piège de pêche traditionnel antillais, souvent fabriqué en grillage hexagonal (fil de fer) ou en bambou tressé, que les marins déposent au fond de l'eau ?",
     options: ["Le casier", "La nasse à chatrou", "Le trémail", "Le grand verveux"],
