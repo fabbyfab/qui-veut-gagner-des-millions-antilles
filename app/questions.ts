@@ -7,6 +7,11 @@ export const QUESTIONS_EASY = [
     answer: "Marie-Galante"
   },
   {
+    question: "Quel site naturel exceptionnel de la Guadeloupe, composé de trois grandes cascades, a été mentionné par Christophe Colomb dans son journal de bord en 1493 ?",
+    options: ["Le Saut de la Lézarde", "Les Chutes du Carbet", "La Cascade aux Écrevisses", "Le Bassin Bleu"],
+    answer: "Les Chutes du Carbet",
+  },
+  {
     question: "Lequel de ces départements ou territoires d'outre-mer NE se trouve PAS dans l'océan Atlantique/Caraïbes ?",
     options: ["La Martinique", "La Guyane", "La Réunion", "Saint-Barthélemy"],
     answer: "La Réunion",
