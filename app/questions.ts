@@ -7,6 +7,11 @@ export const QUESTIONS_EASY = [
     answer: "Marie-Galante"
   },
   {
+    question: "Quel nom porte la célèbre musique traditionnelle guadeloupéenne inscrite à l'UNESCO ?",
+    options: ["Le Bèlè", "Le Gwo Ka", "Le Zouk", "La Bigine"],
+    answer: "Le Gwo Ka",
+  },
+  {
     question: "Quel site naturel exceptionnel de la Guadeloupe, composé de trois grandes cascades, a été mentionné par Christophe Colomb dans son journal de bord en 1493 ?",
     options: ["Le Saut de la Lézarde", "Les Chutes du Carbet", "La Cascade aux Écrevisses", "Le Bassin Bleu"],
     answer: "Les Chutes du Carbet",
