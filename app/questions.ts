@@ -140,6 +140,11 @@ export const QUESTIONS_MEDIUM = [
     answer: "La tête marée"
   },
   {
+    question: "Combien y a-t-il de Centres Hospitaliers Universitaires (CHU) publics dans les Antilles françaises ?",
+    options: ["Aucun", "Deux", "Quatre", "Un seul"],
+    answer: "Deux (le CHU de Martinique à Fort-de-France, le CHU de Pointe-à-Pitre/Les Abymes en Guadeloupe)",
+  },
+  {
     question: "En créole antillais, que signifie exactement le mot 'zouk' à l'origine ?",
     options: ["Une fête ou un bal", "Un instrument de musique", "Un plat épicé", "Une danse de combat"],
     answer: "Une fête ou un bal"
