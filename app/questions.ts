@@ -130,6 +130,11 @@ export const QUESTIONS_MEDIUM = [
     answer: "Ile des saintes"
   },
   {
+    question: "Quel est le seul bras de mer naturel qui sépare la Guadeloupe en deux îles distinctes (Basse-Terre et Grande-Terre) ?",
+    options: ["Le Canal des Saintes", "La Lézarde", "La Rivière Salée", "Le Détroit de la Désirade"],
+    answer: "La Rivière Salée",
+  },
+  {
     question: "En quelle année a eu lieu l'éruption de la Montagne Pelée en Martinique ?",
     options: ["1898", "1902", "1914", "1928"],
     answer: "1902"
