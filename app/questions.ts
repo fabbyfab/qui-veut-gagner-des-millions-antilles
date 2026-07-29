@@ -275,7 +275,11 @@ export const QUESTIONS_HARD = [
     options: ["Quarts de finale", "Demi-finales", "Finale", "Vainqueur"],
     answer: "Demi-finales"
   },
-
+{
+    question: "Quel petit animal, dont le mâle émet un son métallique strident la nuit, est le symbole sonore des Antilles ?",
+    options: ["L'hylode", "Le grillon des mornes", "Le margouillat", "Le colibri"],
+    answer: "L'hylode (grenouille siffleuse)",
+  },
   {
     question: "Dans quelle île des Antilles françaises la célèbre série franco-britannique 'Meurtres au paradis' (Death in Paradise) est-elle tournée ?",
     options: ["La Guadeloupe", "La Martinique", "Saint-Barthélemy", "Saint-Martin"],
