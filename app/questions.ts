@@ -300,6 +300,11 @@ export const QUESTIONS_HARD = [
     answer: "Morne-à-l'Eau"
   },
   {
+    question: "Quelle espèce d'iguane est endémique des Petites Antilles (très présente à La Désirade) et est aujourd'hui une espèce protégée ?",
+    options: ["L'iguane vert", "L'iguane des Petites Antilles (Iguana delicatissima)", "L'iguane marin", "L'iguane rhinocéros"],
+    answer: "L'iguane des Petites Antilles (Iguana delicatissima)",
+  },
+  {
     question: "Quel tube du groupe Zouk Machine a dominé le Top 50 en France pendant 9 semaines consécutives en 1990 ?",
     options: ["Syé Bwa", "Maldòn (la musique dans la peau)", "Kolé Séré", "Zouk-la sé sèl médikaman nou ni"],
     answer: "Maldòn (la musique dans la peau)"
